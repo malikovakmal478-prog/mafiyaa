@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mafia-telegram
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: WEBAPP_URL
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: REQUIRED_CHANNEL
+        sync: false
+      - key: DATABASE_PATH
+        value: mafia.db
+      - key: NIGHT_SECONDS
+        value: "45"
+      - key: DISCUSSION_SECONDS
+        value: "60"
+      - key: VOTE_SECONDS
+        value: "45"
